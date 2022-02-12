@@ -2,6 +2,7 @@ FROM node:17-alpine
 
 RUN mkdir -p /usr/app
 WORKDIR /usr/app
+RUN mkdir -p postgresdata
 COPY package.json server.json knexfile.js jest.config.js index.js wait.sh ./
 COPY src ./src
 COPY tests ./tests
