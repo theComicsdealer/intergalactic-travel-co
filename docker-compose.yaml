@@ -7,15 +7,6 @@ services:
       dockerfile: .Dockerfile
     depends_on:
       - galactic-postgres
-    environment:
-      DEV_DB_CLIENT: postgresql
-      DB_HOST: galactic-postgres
-      DEV_DB_NAME: strapi_assessment_db
-      DEV_DB_USER: postgres
-      DEV_DB_PASSWORD: azerty
-      JWT_SECRET: qwertyuiopasdfghjklzxcvbnm123456
-      NODE_ENV: development
-      PORT: 3000
     ports:
       - '3000:3000'
   galactic-postgres:

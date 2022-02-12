@@ -4,6 +4,7 @@ RUN mkdir -p /usr/app
 WORKDIR /usr/app
 RUN mkdir -p postgresdata
 COPY package.json server.js knexfile.js jest.config.js index.js wait.sh ./
+COPY .env.template ./.env
 COPY src ./src
 COPY tests ./tests
 COPY data ./data
