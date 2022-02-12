@@ -8,10 +8,18 @@
 git clone repository_url
 ```
 
-- **Build docker images**
+- **Before moving further**
+
+First, we need to create the **postgresdata** folder. This is the folder that's attached to the postgres database volume. This folder is already indexed into the .gitignore file so it won't be pushed to the remote repository.
 
 ```
 cd project_folder
+mkdir postgresdata
+```
+
+- **Now we can move forward by building our docker images**
+
+```
 docker-compose up --build -d
 ```
 
