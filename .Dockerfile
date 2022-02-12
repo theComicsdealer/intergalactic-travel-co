@@ -3,7 +3,7 @@ FROM node:17-alpine
 RUN mkdir -p /usr/app
 WORKDIR /usr/app
 RUN mkdir -p postgresdata
-COPY package.json server.json knexfile.js jest.config.js index.js wait.sh ./
+COPY package.json server.js knexfile.js jest.config.js index.js wait.sh ./
 COPY src ./src
 COPY tests ./tests
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
