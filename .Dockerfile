@@ -6,6 +6,7 @@ RUN mkdir -p postgresdata
 COPY package.json server.js knexfile.js jest.config.js index.js wait.sh ./
 COPY src ./src
 COPY tests ./tests
+COPY data ./data
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
 RUN npm install
