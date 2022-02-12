@@ -9,9 +9,6 @@ COPY tests ./tests
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
 RUN npm install
-RUN npm install knex -g
-RUN knex migrate:latest --env development
-RUN knex seed:run
 
 EXPOSE 3000
 CMD /wait && npm start
