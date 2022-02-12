@@ -23,7 +23,7 @@ const {
 	HexadecimalResolver
 } = require('graphql-scalars');
 
-const startApolloServer = async (typeDefs, queries) => {
+const startApolloServer = async () => {
 	const httpServer = http.createServer();
 	const app = new Koa();
 	app.use(bodyParser());
@@ -50,16 +50,10 @@ const startApolloServer = async (typeDefs, queries) => {
 	});
 
 	await server.start();
-
 	server.applyMiddleware({ app });
 	httpServer.on('request', app.callback());
-	await new Promise((resolve) =>
-		httpServer.listen({ port: process.env.PORT }, resolve)
-	);
-	console.log(
-		`🚀 Server running at http://localhost:${process.env.PORT}${server.graphqlPath}`
-	);
-	return { server, app };
+
+	return { server, app, httpServer };
 };
 
-startApolloServer(typeDefs, queries);
+module.exports = startApolloServer;

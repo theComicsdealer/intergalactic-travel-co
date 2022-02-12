@@ -4,12 +4,27 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
-	development: {
-		client: process.env.DEV_DB_CLIENT,
+	test: {
+		client: 'postgresql',
 		connection: {
-			database: process.env.DEV_DB_NAME,
-			user: process.env.DEV_DB_USER,
-			password: process.env.DEV_DB_PASSWORD
+			database: 'strapi_assessment_test_db',
+			user: 'postgres',
+			password: 'azerty'
+		},
+		migrations: {
+			directory: __dirname + '/src/database/migrations'
+		},
+		seeds: {
+			directory: __dirname + '/src/database/seeds'
+		}
+	},
+
+	development: {
+		client: 'postgresql',
+		connection: {
+			database: 'strapi_assessment_db',
+			user: 'postgres',
+			password: 'azerty'
 		},
 		migrations: {
 			directory: __dirname + '/src/database/migrations'

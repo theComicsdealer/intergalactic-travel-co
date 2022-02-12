@@ -1,4 +1,4 @@
-const { UserInputError, ApolloError } = require('apollo-server-koa');
+const { UserInputError, ForbiddenError } = require('apollo-server-koa');
 const {
 	getAllSpaceCenters,
 	getPlanetByCode,
@@ -7,7 +7,7 @@ const {
 
 const spaceCenters = async (_, args, ctx) => {
 	if (!ctx.user) {
-		throw new Error('You are not authorized!');
+		throw new ForbiddenError('You are not authorized!');
 	}
 
 	if (args.page < 1 || args.pageSize < 1 || args.pageSize > 100) {
@@ -26,7 +26,7 @@ const spaceCenters = async (_, args, ctx) => {
 			nodes: result.data
 		};
 	} catch (error) {
-		throw new ApolloError(
+		throw new Error(
 			`Something went wrong with the database. Here is some details: ${error.message}`
 		);
 	}
@@ -34,7 +34,7 @@ const spaceCenters = async (_, args, ctx) => {
 
 const spaceCenter = async (_, args, ctx) => {
 	if (!ctx.user) {
-		throw new Error('You are not authorized!');
+		throw new ForbiddenError('You are not authorized!');
 	}
 
 	if (!args.id && !args.uid) {
@@ -48,7 +48,7 @@ const spaceCenter = async (_, args, ctx) => {
 
 		return await getSpaceCenterByIdOrUid(args.uid);
 	} catch (error) {
-		throw new ApolloError(
+		throw new Error(
 			`Something went wrong with the database. Here is some details: ${error.message}`
 		);
 	}
@@ -59,7 +59,7 @@ const SpaceCenter = {
 		try {
 			return await getPlanetByCode(spaceCenter.planet_code);
 		} catch (error) {
-			throw new ApolloError(
+			throw new Error(
 				`Something went wrong with the database. Here is some details: ${error.message}`
 			);
 		}

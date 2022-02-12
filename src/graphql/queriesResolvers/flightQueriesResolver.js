@@ -1,4 +1,4 @@
-const { ApolloError } = require('apollo-server-koa');
+const { ForbiddenError } = require('apollo-server-koa');
 
 const {
 	getSpaceCenterByIdOrUid,
@@ -9,13 +9,13 @@ const {
 
 const flight = async (_, args, ctx) => {
 	if (!ctx.user) {
-		throw new Error('You are not authorized!');
+		throw new ForbiddenError('You are not authorized!');
 	}
 
 	try {
 		return await getFlightById(args.id);
 	} catch (error) {
-		throw new ApolloError(
+		throw new Error(
 			`Something went wrong with the database. Here is some details: ${error.message}`
 		);
 	}
@@ -23,7 +23,7 @@ const flight = async (_, args, ctx) => {
 
 const flights = async (_, args, ctx) => {
 	if (!ctx.user) {
-		throw new Error('You are not authorized!');
+		throw new ForbiddenError('You are not authorized!');
 	}
 
 	if (args.page < 1 || args.pageSize < 1 || args.pageSize > 100) {
@@ -42,7 +42,7 @@ const flights = async (_, args, ctx) => {
 			nodes: result.data
 		};
 	} catch (error) {
-		throw new ApolloError(
+		throw new Error(
 			`Something went wrong with the database. Here is some details: ${error.message}`
 		);
 	}
@@ -55,7 +55,7 @@ const Flight = {
 		try {
 			return await getSpaceCenterByIdOrUid(flight.launching_site_id);
 		} catch (error) {
-			throw new ApolloError(
+			throw new Error(
 				`Something went wrong with the database. Here is some details: ${error.message}`
 			);
 		}
@@ -65,7 +65,7 @@ const Flight = {
 		try {
 			return await getSpaceCenterByIdOrUid(flight.landing_site_id);
 		} catch (error) {
-			throw new ApolloError(
+			throw new Error(
 				`Something went wrong with the database. Here is some details: ${error.message}`
 			);
 		}
@@ -82,7 +82,7 @@ const Flight = {
 
 			return flight.seat_count;
 		} catch (error) {
-			throw new ApolloError(
+			throw new Error(
 				`Something went wrong with the database. Here is some details: ${error.message}`
 			);
 		}

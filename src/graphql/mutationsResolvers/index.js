@@ -1,4 +1,4 @@
-const { ApolloError } = require('apollo-server-koa');
+const { ForbiddenError } = require('apollo-server-koa');
 
 const {
 	scheduleFlight,
@@ -8,13 +8,13 @@ const {
 const mutations = {
 	scheduleFlight: async (_, args, ctx) => {
 		if (!ctx.user) {
-			throw new Error('You are not authorized!');
+			throw new ForbiddenError('You are not authorized!');
 		}
 
 		try {
 			return await scheduleFlight(args.flightInfo);
 		} catch (error) {
-			throw new ApolloError(
+			throw new Error(
 				`Something went wrong with the database. Here is some details: ${error.message}`
 			);
 		}
@@ -22,13 +22,13 @@ const mutations = {
 
 	bookFlight: async (_, args, ctx) => {
 		if (!ctx.user) {
-			throw new Error('You are not authorized!');
+			throw new ForbiddenError('You are not authorized!');
 		}
 
 		try {
 			return await bookFlight(args.bookingInfo);
 		} catch (error) {
-			throw new ApolloError(
+			throw new Error(
 				`Something went wrong with the database. Here is some details: ${error.message}`
 			);
 		}

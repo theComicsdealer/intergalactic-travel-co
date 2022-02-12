@@ -1,4 +1,4 @@
-const { ApolloError } = require('apollo-server-koa');
+const { ForbiddenError } = require('apollo-server-koa');
 const {
 	getPlanets,
 	getPlanetSpaceCenters
@@ -6,13 +6,13 @@ const {
 
 const planets = async (_, args, ctx) => {
 	if (!ctx.user) {
-		throw new Error('You are not authorized!');
+		throw new ForbiddenError('You are not authorized!');
 	}
 
 	try {
-		return await getPlanets(args);
+		return await getPlanets();
 	} catch (error) {
-		throw new ApolloError(
+		throw new Error(
 			`Something went wrong with the database. Here is some details: ${error.message}`
 		);
 	}
@@ -24,7 +24,7 @@ const Planet = {
 			try {
 				return await getPlanetSpaceCenters(planet.code, args.limit);
 			} catch (error) {
-				throw new ApolloError(
+				throw new Error(
 					`Something went wrong with the database. Here is some details: ${error.message}`
 				);
 			}

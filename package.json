@@ -2,10 +2,10 @@
 	"name": "strapi-backend-assessment",
 	"version": "1.0.0",
 	"description": "Strapi's senior backend engineer assessment",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"dev": "nodemon -r dotenv/config ./",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "jest --runInBand"
 	},
 	"keywords": [
 		"graphql",
@@ -39,6 +39,7 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"jest": "^27.5.0",
 		"nodemon": "^2.0.15",
-		"prettier": "^2.5.1"
+		"prettier": "^2.5.1",
+		"supertest": "^6.2.2"
 	}
 }

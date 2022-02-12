@@ -1,5 +1,3 @@
-const knex = require('../config/config.js');
-
 const { getPlanets, getPlanetByCode } = require('./planetQueries');
 
 const {
