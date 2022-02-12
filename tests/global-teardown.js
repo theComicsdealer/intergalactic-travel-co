@@ -4,6 +4,7 @@ module.exports = async () => {
 	const knex = Knex({
 		client: process.env.DEV_DB_CLIENT,
 		connection: {
+			host: process.env.DB_HOST,
 			user: process.env.DEV_DB_USER,
 			password: process.env.DEV_DB_PASSWORD
 		},

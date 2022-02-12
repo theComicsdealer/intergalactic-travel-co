@@ -6,6 +6,7 @@ const createTestDatabase = async () => {
 	const knex = Knex({
 		client: process.env.DEV_DB_CLIENT,
 		connection: {
+			host: process.env.DB_HOST,
 			user: process.env.DEV_DB_USER,
 			password: process.env.DEV_DB_PASSWORD
 		},
@@ -32,6 +33,7 @@ const seedTestDatabase = async () => {
 	const knex = Knex({
 		client: process.env.DEV_DB_CLIENT,
 		connection: {
+			host: process.env.DB_HOST,
 			database: process.env.DEV_DB_NAME,
 			user: process.env.DEV_DB_USER,
 			password: process.env.DEV_DB_PASSWORD

@@ -7,6 +7,7 @@ module.exports = {
 	test: {
 		client: 'postgresql',
 		connection: {
+			host: 'galactic-postgres',
 			database: 'strapi_assessment_test_db',
 			user: 'postgres',
 			password: 'azerty'
@@ -22,6 +23,7 @@ module.exports = {
 	development: {
 		client: 'postgresql',
 		connection: {
+			host: 'galactic-postgres',
 			database: 'strapi_assessment_db',
 			user: 'postgres',
 			password: 'azerty'
